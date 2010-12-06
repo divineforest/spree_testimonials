@@ -1,0 +1,34 @@
+<% content_for :head do %>
+	<%= stylesheet_link_tag "testimonials" %>
+<% end %>
+
+<h1><%= t(:testimonials) %></h1>
+
+<% if @testimonials.blank? %>
+  <%= t(:no_testimonials) %>
+<% else %>
+	<div class="testimonial-listing">
+		<% @testimonials.each do |testimonial| %>
+			<div class="testimonial">
+				<div class="testimonial-name">
+					<%= testimonial.name %>
+				</div>
+				<div class="testimonial-body">
+					<%= testimonial.body %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>
+
+<div class="testimonial-form">
+	<h2><%= t(:add_your_testimonial) %></h2>
+	<% form_for(:testimonial, :url => collection_url) do |f| %>
+	  <%= render :partial => "form", :locals => { :f => f } %>
+	  <p class="form-buttons">
+			<button type='submit' class='large primary'>
+	      <%= t(:testimonial_create) %>
+	    </button>
+	  </p>
+	<% end %>
+</div>

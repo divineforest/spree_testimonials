@@ -1,0 +1,36 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_testimonial_link">
+      <%= button_link_to t("new_testimonial_button"), new_object_url, {:icon => 'add'} %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= t("testimonials") %></h1>
+
+<table class="index">
+	<tr>
+		<th><%= t("testimonial_name") %></th>
+		<th><%= t("testimonial_body") %></th>
+		<th><%= t("action") %></th>
+  </tr>
+	<tbody>
+    	<% @testimonials.each do |testimonial| %>
+		<tr class="<%= cycle('even', 'odd') %>" id="<%= dom_id(testimonial) %>">
+			<td>
+				<%= testimonial.name %>
+			</td>
+			<td>
+				<%= testimonial.body %>
+			</td>
+			<td>
+        <%= link_to_edit testimonial %> &nbsp;
+        <%= link_to_delete testimonial %>
+	    </td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
